@@ -22,7 +22,5 @@ Feature: Automation Practice website Testing
       Given user is on the home page
       When user enters details to search
       | SHIRT |
-      | DRESS |
       Then results are displayed based on his search
       | SHIRT |
-      | DRESS |
