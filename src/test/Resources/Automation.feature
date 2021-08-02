@@ -1,4 +1,4 @@
-Feature: Automation Practice website Testing
+Feature: Automation Practice website Testing.
 
   @SmokeTest
   Scenario: Search for an item
