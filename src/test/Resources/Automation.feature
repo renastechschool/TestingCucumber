@@ -16,3 +16,11 @@ Feature: Automation Practice website Testing
     Given results are displayed to the user
     When user clicks on the search button and enters details
     Then user can add the item to cart
+
+    @SmokeTest
+    Scenario: Search for items - DataTable
+      Given user is on the home page
+      When user enters details to search
+      | SHIRT |
+      Then results are displayed based on his search
+      | SHIRT |

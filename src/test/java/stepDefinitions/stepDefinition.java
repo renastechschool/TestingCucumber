@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.sql.SQLOutput;
+import java.util.List;
 
 public class stepDefinition {
 
@@ -78,5 +80,25 @@ public class stepDefinition {
         Thread.sleep(2000);
         String result = driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[1]/h2")).getText();
         System.out.println(result);
+    }
+
+    @When("user enters details to search")
+    public void enterDetails(DataTable data){
+        List<List<String>> details = data.asLists();
+        String searchItem = details.get(0).get(0);
+        driver.findElement(By.name("search_query")).sendKeys(searchItem);
+        driver.findElement(By.name("submit_search")).click();
+    }
+
+    @Then("results are displayed based on his search")
+    public void verifyResults(DataTable data){
+        List<List<String>> details = data.asLists();
+        String searchItem = details.get(0).get(0);
+        String resultText = driver.findElement(By.xpath("//*[@id=\"center_column\"]/h1/span[1]")).getText();
+        if (resultText.contains(searchItem)) {
+            System.out.println(searchItem + " results are displayed");
+        } else {
+            System.out.println(searchItem + "results are not displayed on the screen");
+        }
     }
 }
