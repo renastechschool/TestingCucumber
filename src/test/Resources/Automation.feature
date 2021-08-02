@@ -1,7 +1,7 @@
 Feature: Automation Practice website Testing
 
   @SmokeTest
-  Scenario: Search for an item
+  Scenario Outline: Search for an item
     Given user is on the home page
     When user enter <item> in the search box and clicks on search button
     Then search results are displayed to the user with value <item>

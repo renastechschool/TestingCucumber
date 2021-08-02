@@ -16,15 +16,11 @@ import java.util.List;
 
 public class stepDefinition {
 
-    public WebDriver driver;
+    public static WebDriver driver;
 
     @Given("^user is on the home page$")
     public void user_is_on_the_home_page() throws Throwable {
-        //System.setProperty("webdriver.chrome.driver","C:\\Noel\\Selenium\\Chromedriver\\chromedriver.exe");
-
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("http://automationpractice.com/index.php");
+         driver.get("http://automationpractice.com/index.php");
     }
 
     @When("^user enter (.+) in the search box and clicks on search button$")
@@ -41,15 +37,11 @@ public class stepDefinition {
         } else {
             System.out.println(item + "results are not displayed on the screen");
         }
-        driver.close();
     }
 
     @Given("results are displayed to the user")
     public void resultsDisplay()throws Throwable {
 
-        WebDriverManager.chromedriver().setup();
-        //System.setProperty("webdriver.chrome.driver","C:\\Noel\\Selenium\\Chromedriver\\chromedriver.exe");
-        driver = new ChromeDriver();
         driver.get("http://automationpractice.com/index.php");
         driver.findElement(By.name("search_query")).sendKeys("Shirt");
         driver.findElement(By.name("submit_search")).click();
@@ -84,7 +76,6 @@ public class stepDefinition {
         Thread.sleep(2000);
         String result = driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[1]/h2")).getText();
         System.out.println(result);
-        driver.close();
     }
 
     @When("user enters details to search")
@@ -105,6 +96,5 @@ public class stepDefinition {
         } else {
             System.out.println(searchItem + "results are not displayed on the screen");
         }
-        driver.close();
     }
 }
