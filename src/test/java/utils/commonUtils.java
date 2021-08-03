@@ -1,9 +1,11 @@
 package utils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FilterInputStream;
-import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+import java.io.*;
 import java.util.Properties;
 
 public class commonUtils {
@@ -14,4 +16,16 @@ public class commonUtils {
         prop.load(in);
         return prop.getProperty("url");
     }
+
+    public static void getScreenshot(WebDriver driver, String fileName){
+        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        String directoryName = "src/test/Resources/screenshots/";
+        String FileName = directoryName + fileName + "_" + System.currentTimeMillis()+".png";
+        try{
+            FileUtils.copyFile(screenshotFile,new File(FileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

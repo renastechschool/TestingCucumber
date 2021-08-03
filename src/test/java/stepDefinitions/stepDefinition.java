@@ -22,16 +22,19 @@ public class stepDefinition {
     public void user_is_on_the_home_page() throws Throwable {
         String url = utils.commonUtils.getURL("src/test/Resources/automation.properties");
         driver.get(url);
+        utils.commonUtils.getScreenshot(driver,"HomePage");
     }
 
     @When("^user enter (.+) in the search box and clicks on search button$")
     public void user_enter_something_in_the_search_box_and_clicks_on_search_button(String item) throws Throwable {
         driver.findElement(By.name("search_query")).sendKeys(item);
+        utils.commonUtils.getScreenshot(driver,"BeforeSearchClick");
         driver.findElement(By.name("submit_search")).click();
     }
 
     @Then("^search results are displayed to the user with value (.+)$")
     public void search_results_are_displayed_to_the_user_with_value_something(String item) throws Throwable {
+        utils.commonUtils.getScreenshot(driver,"AfterSearchClick");
         String resultText = driver.findElement(By.xpath("//*[@id=\"center_column\"]/h1/span[1]")).getText();
         if (resultText.contains(item)) {
             System.out.println(item + " results are displayed");
