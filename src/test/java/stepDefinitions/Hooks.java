@@ -6,12 +6,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Hooks {
+public class Hooks extends utils.driverUtils  {
 
     @Before
     public void initialise_test(){
-        WebDriverManager.chromedriver().setup();
-        stepDefinition.driver = new ChromeDriver();
+        stepDefinition.driver = initialiseDriver(stepDefinition.driver);
     }
 
     @After
