@@ -20,7 +20,8 @@ public class stepDefinition {
 
     @Given("^user is on the home page$")
     public void user_is_on_the_home_page() throws Throwable {
-         driver.get("http://automationpractice.com/index.php");
+        String url = utils.commonUtils.getURL("src/test/Resources/automation.properties");
+        driver.get(url);
     }
 
     @When("^user enter (.+) in the search box and clicks on search button$")
@@ -42,7 +43,8 @@ public class stepDefinition {
     @Given("results are displayed to the user")
     public void resultsDisplay()throws Throwable {
 
-        driver.get("http://automationpractice.com/index.php");
+        String url = utils.commonUtils.getURL("src/test/Resources/automation.properties");
+        driver.get(url);
         driver.findElement(By.name("search_query")).sendKeys("Shirt");
         driver.findElement(By.name("submit_search")).click();
         String resultText = driver.findElement(By.xpath("//*[@id=\"center_column\"]/h1/span[1]")).getText();
@@ -96,5 +98,29 @@ public class stepDefinition {
         } else {
             System.out.println(searchItem + "results are not displayed on the screen");
         }
+    }
+
+    @Given("^user is on the Contact us page$")
+    public void user_is_on_the_contact_us_page() throws Throwable {
+        String url = utils.commonUtils.getURL("src/test/Resources/automation.properties");
+        driver.get(url);
+        driver.findElement(By.xpath("//*[@id=\"contact-link\"]/a")).click();
+    }
+
+    @When("^the user enters details and clicks on Send button$")
+    public void the_user_enters_details_and_clicks_on_send_button(DataTable data) throws Throwable {
+        List<String> details = data.asList();
+        WebElement subject = driver.findElement(By.id("id_contact"));
+        Select subjectDropDown = new Select(subject);
+        subjectDropDown.selectByVisibleText(details.get(0));
+        driver.findElement(By.id("email")).sendKeys(details.get(1));
+        driver.findElement(By.id("id_order")).sendKeys(details.get(2));
+        driver.findElement(By.id("message")).sendKeys(details.get(3));
+        driver.findElement(By.id("submitMessage")).click();
+    }
+
+    @Then("^a success message is displayed on the page$")
+    public void a_success_message_is_displayed_on_the_page() throws Throwable {
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"center_column\"]/p")).getText());
     }
 }

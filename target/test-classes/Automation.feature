@@ -17,10 +17,17 @@ Feature: Automation Practice website Testing
     When user clicks on the search button and enters details
     Then user can add the item to cart
 
-    @SmokeTest
+  @SmokeTest
     Scenario: Search for items - DataTable
       Given user is on the home page
       When user enters details to search
       | SHIRT |
       Then results are displayed based on his search
       | SHIRT |
+
+  @Contact
+      Scenario: Contact Us Page
+        Given user is on the Contact us page
+        When the user enters details and clicks on Send button
+        | Customer service | a@b.com | 12345 | Hello, How are you? |
+        Then a success message is displayed on the page
