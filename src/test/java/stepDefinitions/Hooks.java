@@ -10,7 +10,7 @@ public class Hooks extends utils.driverUtils  {
 
     @Before
     public void initialise_test(){
-        stepDefinition.driver = initialiseDriver(stepDefinition.driver);
+        stepDefinition.driver = initialiseDriver(stepDefinition.driver,"chrome");
     }
 
     @After
