@@ -25,7 +25,7 @@ Feature: Automation Practice website Testing
       Then results are displayed based on his search
       | SHIRT |
 
-  @Contact
+  @SmokeTest
       Scenario: Contact Us Page
         Given user is on the Contact us page
         When the user enters details and clicks on Send button
