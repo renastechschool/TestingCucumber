@@ -8,6 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import stepDefinitions.stepDefinition;
 
+import java.util.concurrent.TimeUnit;
+
 public class driverUtils {
 
     public WebDriver initialiseDriver(WebDriver driver,String browsername){
@@ -32,6 +34,8 @@ public class driverUtils {
                 driver = new ChromeDriver();
                 break;
         }
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
 
         /*
