@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/Resources",
         glue = "stepDefinitions",
-        tags = "@SmokeTest",
+        tags = "@SmartBear",
         plugin = {"pretty","html:report.html"}
 )
 
