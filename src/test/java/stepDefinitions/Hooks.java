@@ -15,14 +15,14 @@ public class Hooks extends utils.driverUtils  {
         stepDefinition.driver = initialiseDriver(stepDefinition.driver,"chrome");
     }
 
-    @Before("@SmartBear")
+    @Before("@SanityTest")
     public void initialise_smartBear() throws IOException {
         smartBearSteps.driver = initialiseDriver(smartBearSteps.driver,"chrome");
         String url = utils.commonUtils.getURL("src/test/Resources/smartbear.properties");
         smartBearSteps.driver.get(url);
     }
 
-    @After("@SmartBear")
+    @After("@SanityTest")
             public void close_smartBear(){
             smartBearSteps.driver.close();
     }
