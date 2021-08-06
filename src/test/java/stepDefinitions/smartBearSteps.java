@@ -4,6 +4,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,29 +15,41 @@ import java.util.Map;
 public class smartBearSteps {
 
     public static WebDriver driver;
+    static Logger log = LogManager.getLogger(smartBearSteps.class);
+
 
     @Given("^user is on the login page$")
     public void user_is_on_the_login_page() throws Throwable {
+        log.info("===============Starting Login==================");
         utils.commonUtils.getScreenshot(driver,"LoginPage");
-        System.out.println(driver.getTitle());
+        log.info("User is on the page - "+ driver.getTitle());
     }
 
     @Given("^user is on View all orders page$")
     public void user_is_on_view_all_orders_page() throws Throwable {
+        log.info("===============Starting View All Orders==================");
         user_enters_username_as_something_and_password_as_something("Tester", "test");
+    }
+
+    @Given("^user is on Add orders page$")
+    public void user_is_on_add_orders_page() throws Throwable {
+        log.info("===============Starting Add Orders==================");
+        user_enters_username_as_something_and_password_as_something("Tester", "test");
+        driver.findElement(By.xpath("//*[@id=\"ctl00_menu\"]/li[3]/a")).click();
     }
 
     @Given("^user is on View all products page$")
     public void user_is_on_view_all_products_page() throws Throwable {
+        log.info("===============Starting View All Products==================");
         user_enters_username_as_something_and_password_as_something("Tester", "test");
         driver.findElement(By.xpath("//*[@id=\"ctl00_menu\"]/li[2]/a")).click();
         String pageHead = driver.findElement(By.xpath("//*[@id=\"aspnetForm\"]/table/tbody/tr/td[2]/div[2]/h2")).getText().trim();
         if (pageHead.equals("List of Products")){
-            System.out.println("User is on All Products Page");
-        }
+            log.info("User is on ALL products page");
+       }
         else
         {
-            System.out.println("User is NOT on All Products Page");
+            log.error("User is NOT on All Products Page");
         }
     }
 
@@ -51,11 +65,11 @@ public class smartBearSteps {
     public void user_views_the_title_as_something(String strArg1) throws Throwable {
         String pageHead = driver.findElement(By.xpath("//*[@id=\"aspnetForm\"]/table/tbody/tr/td[2]/div[2]/h2")).getText().trim();
         if (pageHead.equals(strArg1)){
-            System.out.println("User is on correct page");
+            log.info("User is on correct page");
         }
         else
         {
-            System.out.println("User is NOT on the correct page");
+            log.error("User is NOT on the correct page" + pageHead);
         }
     }
 
@@ -65,29 +79,26 @@ public class smartBearSteps {
         String title = driver.getTitle().trim();
         if(title.equals("Web Orders"))
         {
-            System.out.println("Test Case Passed");
+            log.info("Test Case Passed");
         }
         else{
-            System.out.println("Test Case Failed");
+            log.error("Test Case Failed");
         }
+        log.info("==================Stopping Login=================");
     }
 
     @Then("^view all orders page loads successfully$")
     public void view_all_orders_page_loads_successfully() throws Throwable {
-
+        log.info("==================Stopping View All Orders=================");
     }
 
     @Then("^view all products page loads successfully$")
     public void view_all_products_page_loads_successfully() throws Throwable {
-
+        log.info("==================Stopping View All Products=================");
     }
 
     @Then("^Add orders page loads successfully$")
     public void add_orders_page_loads_successfully() throws Throwable {
-
-    }
-
-    public void login(){
-
+        log.info("==================Stopping Add Orders=================");
     }
 }
