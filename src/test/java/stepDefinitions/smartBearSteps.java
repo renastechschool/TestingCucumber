@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.Map;
 
@@ -36,6 +38,7 @@ public class smartBearSteps {
         log.info("===============Starting Add Orders==================");
         user_enters_username_as_something_and_password_as_something("Tester", "test");
         driver.findElement(By.xpath("//*[@id=\"ctl00_menu\"]/li[3]/a")).click();
+        utils.commonUtils.getScreenshot(driver,"NewOrder");
     }
 
     @Given("^user is on View all products page$")
@@ -100,5 +103,45 @@ public class smartBearSteps {
     @Then("^Add orders page loads successfully$")
     public void add_orders_page_loads_successfully() throws Throwable {
         log.info("==================Stopping Add Orders=================");
+    }
+
+    @When("^user enters all the information and click on Process button$")
+    public void user_enters_all_the_information_and_click_on_process_button(Map<String, String> data) {
+        WebElement product = driver.findElement(By.id("ctl00_MainContent_fmwOrder_ddlProduct"));
+        Select productDrpDown = new Select(product);
+        productDrpDown.selectByVisibleText(data.get("Product"));
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtQuantity")).sendKeys(data.get("Quantity"));
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtName")).sendKeys(data.get("Customer Name"));
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox2")).sendKeys(data.get("Street"));
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox3")).sendKeys(data.get("City"));
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox4")).sendKeys(data.get("State"));
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox5")).sendKeys(data.get("Zip"));
+        if(data.get("Card").equalsIgnoreCase("visa")){
+            driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_0")).click();
+        }
+        else if (data.get("Card").equalsIgnoreCase("MasterCard")){
+            driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_1")).click();
+        }
+        else
+        {
+            driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_2")).click();
+        }
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox6")).sendKeys(data.get("Card Number"));
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox1")).sendKeys(data.get("Expiry Date"));
+        utils.commonUtils.getScreenshot(driver,"BeforePlacingOrder");
+        driver.findElement(By.id("ctl00_MainContent_fmwOrder_InsertButton")).click();
+    }
+
+    @Then("^order is added successfully$")
+    public void order_is_added_successfully() {
+        utils.commonUtils.getScreenshot(driver,"AfterPlacingOrder");
+        String message = driver.findElement(By.xpath("//*[@id=\"ctl00_MainContent_fmwOrder\"]/tbody/tr/td/div/strong")).getText().trim();
+        if (message.equals("New order has been successfully added.")){
+            log.info("Order has been added successfully");
+        }
+        else
+        {
+            log.error("Order has not been added");
+        }
     }
 }

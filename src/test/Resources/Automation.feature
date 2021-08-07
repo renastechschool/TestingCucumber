@@ -31,3 +31,13 @@ Feature: Automation Practice website Testing
         When the user enters details and clicks on Send button
         | Customer service | a@b.com | 12345 | Hello, How are you? |
         Then a success message is displayed on the page
+
+    @SmokeTest
+    Scenario: Contact Us Page
+      Given user is on the Contact us page
+      When contact information
+      | Subject | Customer service |
+      | Email   | a@b.com          |
+      | Order Reference | ORDER12345    |
+      | Message         | Hello, How are you? |
+      Then a success message is displayed on the page

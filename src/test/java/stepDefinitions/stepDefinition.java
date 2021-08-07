@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.sql.SQLOutput;
 import java.util.List;
+import java.util.Map;
 
 public class stepDefinition {
 
@@ -119,15 +120,32 @@ public class stepDefinition {
 
     @When("^the user enters details and clicks on Send button$")
     public void the_user_enters_details_and_clicks_on_send_button(DataTable data) throws Throwable {
-        List<String> details = data.asList();
+        System.out.println("INSIDE LIST");
         WebElement subject = driver.findElement(By.id("id_contact"));
         Select subjectDropDown = new Select(subject);
+        List<String> details = data.asList();
         subjectDropDown.selectByVisibleText(details.get(0));
         driver.findElement(By.id("email")).sendKeys(details.get(1));
         driver.findElement(By.id("id_order")).sendKeys(details.get(2));
         driver.findElement(By.id("message")).sendKeys(details.get(3));
         utils.commonUtils.getScreenshot(driver,"BeforeSendClick");
         driver.findElement(By.id("submitMessage")).click();
+        System.out.println("Outside List");
+    }
+
+
+    @When("contact information")
+    public void userEntersDetails(Map<String , String> data){
+        System.out.println("Inside Maps");
+        WebElement subject = driver.findElement(By.id("id_contact"));
+        Select subjectDropDown = new Select(subject);
+        subjectDropDown.selectByVisibleText(data.get("Subject"));
+        driver.findElement(By.id("email")).sendKeys(data.get("Email"));
+        driver.findElement(By.id("id_order")).sendKeys(data.get("Order Reference"));
+        driver.findElement(By.id("message")).sendKeys(data.get("Message"));
+        utils.commonUtils.getScreenshot(driver,"BeforeSendClick");
+        driver.findElement(By.id("submitMessage")).click();
+        System.out.println("Outside Maps");
     }
 
     @Then("^a success message is displayed on the page$")

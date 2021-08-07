@@ -15,6 +15,15 @@ public class Hooks extends utils.driverUtils  {
         stepDefinition.driver = initialiseDriver(stepDefinition.driver,"chrome");
     }
 
+    @Before("@RegressionTest")
+    public void initialise_Regression_test() throws IOException {
+
+        smartBearSteps.driver = initialiseDriver(smartBearSteps.driver,"chrome");
+        String url = utils.commonUtils.getURL("src/test/Resources/smartbear.properties");
+        smartBearSteps.driver.get(url);
+    }
+
+
     @Before("@SanityTest")
     public void initialise_smartBear() throws IOException {
         smartBearSteps.driver = initialiseDriver(smartBearSteps.driver,"chrome");
@@ -30,5 +39,11 @@ public class Hooks extends utils.driverUtils  {
     @After("@SmokeTest")
     public void close_test(){
         stepDefinition.driver.close();
+    }
+
+
+    @After("@RegressionTest")
+    public void close_Regression_test(){
+        smartBearSteps.driver.close();
     }
 }
