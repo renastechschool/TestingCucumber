@@ -69,7 +69,7 @@
             <version>3.0.0-M4</version>
             <configuration>
                 <includes>
-                    <include>**/*DevPortalRunner.java</include>
+                    <include>**/*TestRunner.java</include>
                 </includes>
                 <testFailureIgnore>true</testFailureIgnore>
                 <runOrder>alphabetical</runOrder>
