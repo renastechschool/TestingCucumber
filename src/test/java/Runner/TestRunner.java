@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/Resources",
         glue = "stepDefinitions",
         tags = "@SanityTest",
+        dryRun = false,
         plugin = {"pretty","html:report.html"}
 )
 
