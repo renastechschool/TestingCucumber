@@ -46,4 +46,9 @@ public class Hooks extends utils.driverUtils  {
     public void close_Regression_test(){
         smartBearSteps.driver.close();
     }
+
+    @Before("@Testing")
+    public void testingBefore(){
+
+    }
 }
