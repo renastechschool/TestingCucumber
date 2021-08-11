@@ -11,6 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import pages.ListAllOrders;
+import pages.Login;
+import pages.Order;
 
 import java.util.Map;
 
@@ -144,4 +147,63 @@ public class smartBearSteps {
             log.error("Order has not been added");
         }
     }
+
+
+    @Given("The user wants to enter username")
+    public void the_user_wants_to_enter_username() {
+        Login login = new Login(driver);
+        login.loginMethodForUsername();
+
+    }
+    @Then("The user wants to enter password")
+    public void the_user_wants_to_enter_password() throws InterruptedException {
+        Login login = new Login(driver);
+        login.loginMethodForPassword();
+        login.setSubmitButton();
+
+//        ListAllOrders listAllOrders = new ListAllOrders(driver);
+//        listAllOrders.checkAllBoxes();
+//
+//        listAllOrders.clickAllCheckBoxes();
+
+    }
+
+
+    @Then("The user wants to go to order page")
+    public void the_user_wants_to_go_to_order_page() {
+        ListAllOrders listAllOrders = new ListAllOrders(driver);
+        listAllOrders.clickOrder();
+    }
+    @Then("The user wants to enter Product Information")
+    public void the_user_wants_to_enter_product_information(Map<String,String> dataTable) {
+
+        Order order = new Order(driver);
+        order.productInfo(dataTable);
+
+    }
+    @Then("The user wants to set Address Information")
+    public void the_user_wants_to_set_address_information(Map<String,String> dataTable) {
+        Order order = new Order(driver);
+        order.addressInfo(dataTable);
+
+    }
+    @Then("The user wants to enter Payment Information")
+    public void the_user_wants_to_enter_payment_information(Map<String,String> dataTable) {
+        Order order = new Order(driver);
+        order.paymentInfo(dataTable);
+
+    }
+    @Then("The user wants process")
+    public void the_user_wants_process() {
+        Order order = new Order(driver);
+        order.clickProcess();
+
+    }
+
+
+
+
+
+
+
 }

@@ -28,4 +28,16 @@ public class commonUtils {
         }
     }
 
+    public void timeOut(long millisecond){
+
+        try {
+            Thread.sleep(millisecond);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 }

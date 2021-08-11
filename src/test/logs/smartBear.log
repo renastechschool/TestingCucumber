@@ -1,0 +1,14 @@
+[main] INFO  stepDefinitions.smartBearSteps  - ===============Starting Login==================
+[main] INFO  stepDefinitions.smartBearSteps  - User is on the page - Web Orders Login
+[main] INFO  stepDefinitions.smartBearSteps  - Test Case Passed
+[main] INFO  stepDefinitions.smartBearSteps  - ==================Stopping Login=================
+[main] INFO  stepDefinitions.smartBearSteps  - ===============Starting View All Orders==================
+[main] INFO  stepDefinitions.smartBearSteps  - User is on correct page
+[main] INFO  stepDefinitions.smartBearSteps  - ==================Stopping View All Orders=================
+[main] INFO  stepDefinitions.smartBearSteps  - ===============Starting View All Products==================
+[main] INFO  stepDefinitions.smartBearSteps  - User is on ALL products page
+[main] INFO  stepDefinitions.smartBearSteps  - User is on correct page
+[main] INFO  stepDefinitions.smartBearSteps  - ==================Stopping View All Products=================
+[main] INFO  stepDefinitions.smartBearSteps  - ===============Starting Add Orders==================
+[main] INFO  stepDefinitions.smartBearSteps  - User is on correct page
+[main] INFO  stepDefinitions.smartBearSteps  - ==================Stopping Add Orders=================
