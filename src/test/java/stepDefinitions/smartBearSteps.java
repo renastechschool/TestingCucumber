@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import pages.ListAllOrders;
 import pages.Login;
 import pages.Order;
+import pages.Products;
 
 import java.util.Map;
 
@@ -22,6 +23,7 @@ public class smartBearSteps {
     public static WebDriver driver;
     static Logger log = LogManager.getLogger(smartBearSteps.class);
 
+    Order order = new Order(driver);
 
     @Given("^user is on the login page$")
     public void user_is_on_the_login_page() throws Throwable {
@@ -177,31 +179,58 @@ public class smartBearSteps {
     @Then("The user wants to enter Product Information")
     public void the_user_wants_to_enter_product_information(Map<String,String> dataTable) {
 
-        Order order = new Order(driver);
+      //  Order order = new Order(driver);
         order.productInfo(dataTable);
 
     }
     @Then("The user wants to set Address Information")
     public void the_user_wants_to_set_address_information(Map<String,String> dataTable) {
-        Order order = new Order(driver);
+      //  Order order = new Order(driver);
         order.addressInfo(dataTable);
 
     }
     @Then("The user wants to enter Payment Information")
     public void the_user_wants_to_enter_payment_information(Map<String,String> dataTable) {
-        Order order = new Order(driver);
+      //  Order order = new Order(driver);
         order.paymentInfo(dataTable);
 
     }
     @Then("The user wants process")
     public void the_user_wants_process() {
-        Order order = new Order(driver);
+      //  Order order = new Order(driver);
         order.clickProcess();
 
     }
 
+    @Then("The user wants to enter Product Information as {string}")
+    public void the_user_wants_to_enter_product_information_as(String productInfo) {
+
+      //  Order order = new Order(driver);
+        order.scenarioOutlineExampleMethod(productInfo);
+
+    }
 
 
+    @Then("The user wants to enter Payment Information as {string} and {string} and {string}")
+    public void the_user_wants_to_enter_payment_information_as_and_and(String card, String CardNo, String eDate) {
+    //    Order order = new Order(driver);
+        order.paymentInfoForScenarioOutline(  card,  CardNo, eDate);
+
+    }
+
+    @Then("The user wants to view all products")
+    public void the_user_wants_to_view_all_products() {
+
+        Products product = new Products(driver);
+        product.clickProductPage();
+    }
+    @Then("The user wants to verify data are correct")
+    public void the_user_wants_to_verify_data_are_correct(Map<String,String> dataTable) {
+        Products product = new Products(driver);
+        product.verifyPriceAndDiscount(dataTable);
+
+
+    }
 
 
 

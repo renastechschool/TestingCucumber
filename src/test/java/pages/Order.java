@@ -102,4 +102,28 @@ public class Order {
 
 
 
+    public void scenarioOutlineExampleMethod(String productInfo){
+
+        Select select = new Select(dropdown);
+
+        select.selectByVisibleText(productInfo);
+        common.timeOut(1000);
+
+
+    }
+
+
+    public void paymentInfoForScenarioOutline(String card, String CardNo, String eDate){
+
+        common.timeOut(1000);
+        visa.click();
+        common.timeOut(1000);
+        cardNo.sendKeys(CardNo);
+        common.timeOut(1000);
+        expDate.sendKeys(eDate);
+
+
+    }
+
+
 }
