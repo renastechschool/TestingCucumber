@@ -18,7 +18,7 @@ Scenario: SmartBear Login
     When user views the title as "List of Products"
     Then view all products page loads successfully
 
-  @SanityTest
+  @RegressionTest
   Scenario: Check Add Orders
     Given user is on Add orders page
     When user views the title as "Order"
