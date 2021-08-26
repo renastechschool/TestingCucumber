@@ -12,3 +12,5 @@
 [main] INFO  stepDefinitions.smartBearSteps  - ===============Starting Add Orders==================
 [main] INFO  stepDefinitions.smartBearSteps  - User is on correct page
 [main] INFO  stepDefinitions.smartBearSteps  - ==================Stopping Add Orders=================
+[pool-1-thread-1] INFO  stepDefinitions.smartBearSteps  - ===============Starting Add Orders==================
+[pool-1-thread-1] INFO  stepDefinitions.smartBearSteps  - Order has been added successfully
