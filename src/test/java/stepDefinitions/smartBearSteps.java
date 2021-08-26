@@ -153,6 +153,11 @@ public class smartBearSteps {
 
     @Given("The user wants to enter username")
     public void the_user_wants_to_enter_username() {
+        System.out.println("**********************Start the test case****************");
+        System.out.println("**********************Start the test case****************");
+        System.out.println("**********************Start the test case****************");
+        System.out.println("**********************Start the test case****************");
+        System.out.println("**********************Start the test case****************");
         Login login = new Login(driver);
         login.loginMethodForUsername();
 
